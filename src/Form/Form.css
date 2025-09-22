@@ -1,0 +1,180 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fdf2f8, #f0f4f8);
+  height: 100vh;
+  padding: 0.5rem;
+}
+
+.form-logos {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.form-logo {
+  width: 50px;
+  height: auto;
+}
+
+.user-form {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 6px 15px rgba(236, 72, 153, 0.2);
+}
+
+.user-form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #ec4899;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.date-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.date-buttons button {
+  flex: 1;
+  margin: 0 0.3rem;
+  padding: 0.5rem;
+  border: 1px solid #ec4899;
+  background: white;
+  color: #ec4899;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.date-buttons button.active,
+.date-buttons button:hover {
+  background: #ec4899;
+  color: white;
+}
+
+.user-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #444;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.user-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.user-form input:focus {
+  border-color: #ec4899;
+  box-shadow: 0 0 3px rgba(236, 72, 153, 0.4);
+  outline: none;
+}
+
+.coupon-section {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.coupon-section input {
+  flex: 2;
+}
+
+.verify-btn {
+  flex: 1;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  height: 100%;
+  transition: 0.2s;
+}
+
+.verify-btn:hover {
+  background: #4338ca;
+}
+
+.user-form button[type="submit"] {
+  width: 100%;
+  padding: 0.6rem;
+  background: #ec4899;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-form button[type="submit"]:hover {
+  background: #be185d;
+}
+
+.user-form button[type="submit"]:disabled {
+  background: #fca5a5;
+  cursor: not-allowed;
+}
+
+.terms-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.terms-section input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.terms-section label {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .user-form {
+    padding: 0.8rem;
+  }
+
+  .user-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .user-form input,
+  .user-form button {
+    font-size: 0.8rem;
+    padding: 0.45rem;
+  }
+
+  .date-buttons button {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .verify-btn {
+    font-size: 0.7rem;
+    padding: 0.4rem;
+  }
+}
