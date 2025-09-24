@@ -105,7 +105,7 @@ function Form() {
         <label>SMS Mobile No</label>
         <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="10-digit valid phone no for sending ticket " required />
 
-        <label>Aadhaar</label>
+        <label>Aadhar Number</label>
         <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleChange} placeholder="12-digit Aadhaar" required />
 
         <label>Email</label>
@@ -124,8 +124,8 @@ function Form() {
           <p style={{ color: "green", fontWeight: "600" }}>Event Date: {eventDate}</p>
         )}
 
-        <label>Coupon got by</label>
-        <input type="text" name="userReference" value={formData.userReference} onChange={handleChange} placeholder="Who gave you the coupon?" required />
+        <label>Coupon Received From</label>
+        <input type="text" name="userReference" value={formData.userReference} onChange={handleChange} placeholder="Name of person/company who gave you the coupon?" required />
 
         <div className="terms-section">
           <input type="checkbox" id="terms" required />
