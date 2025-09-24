@@ -132,7 +132,14 @@ function Form() {
         />
 
         <label>Aadhar Number</label>
-        <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleChange} placeholder="12-digit Aadhaar" required />
+        <input
+          type="text"
+          name="aadhaar"
+          value={formData.aadhaar}
+          onChange={handleChange}
+          placeholder="12-digit Aadhaar"
+          required
+        />
 
         <label>Email</label>
         <input
@@ -174,7 +181,14 @@ function Form() {
         )}
 
         <label>Coupon Received From</label>
-        <input type="text" name="userReference" value={formData.userReference} onChange={handleChange} placeholder="Name of person/company who gave you the coupon?" required />
+        <input
+          type="text"
+          name="userReference"
+          value={formData.userReference}
+          onChange={handleChange}
+          placeholder="Name of person/company who gave you the coupon?"
+          required
+        />
 
         <div className="terms-section">
           <input type="checkbox" id="terms" required />
@@ -186,6 +200,32 @@ function Form() {
         <button type="submit" disabled={!isCouponVerified}>
           Submit
         </button>
+
+        {/* Terms & Conditions Section */}
+        <div className="tc-box">
+          <h4>Terms & Conditions:</h4>
+          <ul>
+            <li>Only 1 booking allowed per phone number</li>
+            <li>
+              Severe action will be taken against misconduct or mischievous
+              behavior
+            </li>
+            <li>
+              Smoking and consumption of alcohol is strictly prohibited inside
+              the venue
+            </li>
+            <li>Outside eatables and water are not allowed</li>
+            <li>
+              Scissors, knives, blades, or any other objectionable instruments
+              are not allowed
+            </li>
+            <li>
+              Every individual must undergo security checks and frisking before
+              entering
+            </li>
+            <li>Re-entry is not allowed once you exit the venue</li>
+          </ul>
+        </div>
       </form>
     </div>
   );
