@@ -121,7 +121,7 @@ function Form() {
           required
         />
 
-        <label>SMS Mobile No</label>
+        <label>Mobile No (Booking SMS will be sent here)</label>
         <input
           type="tel"
           name="phone"
@@ -131,20 +131,8 @@ function Form() {
           required
         />
 
-<<<<<<< HEAD
         <label>Aadhar Number</label>
         <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleChange} placeholder="12-digit Aadhaar" required />
-=======
-        <label>Aadhaar</label>
-        <input
-          type="text"
-          name="aadhaar"
-          value={formData.aadhaar}
-          onChange={handleChange}
-          placeholder="12-digit Aadhaar"
-          required
-        />
->>>>>>> 4f2042e05f6a3118e2c11bec9cc345255c4a735a
 
         <label>Email</label>
         <input
@@ -185,20 +173,8 @@ function Form() {
           </p>
         )}
 
-<<<<<<< HEAD
         <label>Coupon Received From</label>
         <input type="text" name="userReference" value={formData.userReference} onChange={handleChange} placeholder="Name of person/company who gave you the coupon?" required />
-=======
-        <label>Coupon got by</label>
-        <input
-          type="text"
-          name="userReference"
-          value={formData.userReference}
-          onChange={handleChange}
-          placeholder="Who gave you the coupon?"
-          required
-        />
->>>>>>> 4f2042e05f6a3118e2c11bec9cc345255c4a735a
 
         <div className="terms-section">
           <input type="checkbox" id="terms" required />
