@@ -18,41 +18,19 @@ function Form() {
   const [isCouponVerified, setIsCouponVerified] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [eventDate, setEventDate] = useState("");
-  const [emailWarning, setEmailWarning] = useState("");
   const navigate = useNavigate();
 
-const handleChange = async (e) => {
-  const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  if (name === "phone" && value.length > 10) return;
-  if (name === "aadhaar" && value.length > 12) return;
+    if (name === "phone" && value.length > 10) return;
+    if (name === "aadhaar" && value.length > 12) return;
 
-  setFormData((prev) => ({
-    ...prev,
-    [name]: name === "coupon" ? value.toUpperCase() : value,
-  }));
-
-  // Check email on change
-  if (name === "email" && value) {
-    try {
-      const res = await axios.post(
-        "https://guestdandiya-backend.onrender.com/api/check-email",
-        { email: value }
-      );
-      if (res.data.exists) {
-        setEmailWarning(
-          "This email has been used before, but you can still submit."
-        );
-      } else {
-        setEmailWarning("");
-      }
-    } catch (err) {
-      console.error(err);
-      setEmailWarning("");
-    }
-  }
-};
-
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "coupon" ? value.toUpperCase() : value,
+    }));
+  };
 
   const verifyCoupon = async () => {
     if (!formData.coupon) return alert("Enter coupon code");
@@ -96,6 +74,11 @@ const handleChange = async (e) => {
           eventDate,
         }
       );
+
+      // Check if phone already booked
+      if (res.data.phoneExists) {
+        return alert("This phone number has already booked a coupon!");
+      }
 
       alert(`Form submitted! Token: ${res.data.token}`);
       navigate("/success");
@@ -154,9 +137,6 @@ const handleChange = async (e) => {
           placeholder="Enter email"
           required
         />
-        {emailWarning && (
-          <p style={{ color: "orange", fontWeight: "600" }}>{emailWarning}</p>
-        )}
 
         <label>Coupon</label>
         <div className="coupon-section">
@@ -205,7 +185,6 @@ const handleChange = async (e) => {
           Submit
         </button>
 
-        {/* Terms & Conditions Section */}
         <div className="tc-box">
           <h4>Terms & Conditions:</h4>
           <ul>
