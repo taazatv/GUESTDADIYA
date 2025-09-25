@@ -22,60 +22,37 @@ function Form() {
   const navigate = useNavigate();
 
   const handleChange = async (e) => {
-    const { name, value } = e.target;
+  const { name, value } = e.target;
 
-    if (name === "phone" && value.length > 10) return;
-    if (name === "aadhaar" && value.length > 12) return;
+  if (name === "phone" && value.length > 10) return;
+  if (name === "aadhaar" && value.length > 12) return;
 
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  setFormData((prev) => ({
+    ...prev,
+    [name]: name === "coupon" ? value.toUpperCase() : value,
+  }));
 
-    // Check email on change
-    if (name === "email" && value) {
-      try {
-        const res = await axios.post(
-          "https://guestdandiya-backend.onrender.com/api/check-email",
-          { email: value }
-        );
-        if (res.data.exists) {
-          setEmailWarning(
-            "This email has been used before, but you can still submit."
-          );
-        } else {
-          setEmailWarning("");
-        }
-      } catch (err) {
-        console.error(err);
-        setEmailWarning("");
-      }
-    }
-  };
-
-  const verifyCoupon = async () => {
-    if (!formData.coupon) return alert("Enter coupon code");
-    setVerifying(true);
+  // Check email on change
+  if (name === "email" && value) {
     try {
       const res = await axios.post(
-        "https://guestdandiya-backend.onrender.com/api/verify-coupon",
-        { coupon: formData.coupon }
+        "https://guestdandiya-backend.onrender.com/api/check-email",
+        { email: value }
       );
-
-      if (res.data.valid) {
-        setEventDate(res.data.eventDate);
-        alert(`Coupon verified for event date: ${res.data.eventDate}`);
-        setIsCouponVerified(true);
+      if (res.data.exists) {
+        setEmailWarning(
+          "This email has been used before, but you can still submit."
+        );
       } else {
-        alert("Invalid or already used coupon!");
-        setIsCouponVerified(false);
-        setEventDate("");
+        setEmailWarning("");
       }
     } catch (err) {
       console.error(err);
-      alert("Error verifying coupon");
-      setIsCouponVerified(false);
-      setEventDate("");
+      setEmailWarning("");
     }
-    setVerifying(false);
-  };
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
