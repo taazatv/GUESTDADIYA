@@ -21,7 +21,7 @@ function Form() {
   const [emailWarning, setEmailWarning] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = async (e) => {
+const handleChange = async (e) => {
   const { name, value } = e.target;
 
   if (name === "phone" && value.length > 10) return;
@@ -53,6 +53,33 @@ function Form() {
   }
 };
 
+
+  const verifyCoupon = async () => {
+    if (!formData.coupon) return alert("Enter coupon code");
+    setVerifying(true);
+    try {
+      const res = await axios.post(
+        "https://guestdandiya-backend.onrender.com/api/verify-coupon",
+        { coupon: formData.coupon }
+      );
+
+      if (res.data.valid) {
+        setEventDate(res.data.eventDate);
+        alert(`Coupon verified for event date: ${res.data.eventDate}`);
+        setIsCouponVerified(true);
+      } else {
+        alert("Invalid or already used coupon!");
+        setIsCouponVerified(false);
+        setEventDate("");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error verifying coupon");
+      setIsCouponVerified(false);
+      setEventDate("");
+    }
+    setVerifying(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
