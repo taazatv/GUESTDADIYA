@@ -135,7 +135,7 @@ function Form() {
           required
         />
 
-        <label>Aadhar Number</label>
+        <label>Aadhaar Number</label>
         <input
           type="text"
           name="aadhaar"
