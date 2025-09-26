@@ -111,7 +111,7 @@ function Form() {
           <img src={taaztv} alt="Taaza TV" className="form-logo" />
         </div>
 
-        <h2>COMPLEMENTARY GUEST PASSES</h2>
+        <h2>COMPLIMENTARY GUEST PASSES</h2>
         <h3>REDEEM AT VENUE TICKET COUNTER</h3>
         <h3>Enter mobile no. & Aadhaar card at venue for verification</h3>
 
