@@ -205,7 +205,7 @@ function Form() {
         <div className="tc-box">
           <h4>Terms & Conditions:</h4>
           <ul>
-            <li>Only 1 booking allowed per phone number</li>
+            
             <li>Carry your Aadhaar card at venue for verification</li>
             <li>Only SMS received on mobile is valid</li>
             <li>No screenshots or forwards allowed</li>
