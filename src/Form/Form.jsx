@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Form.css";
 import taazDandiya from "../assets/taaza-dandiya-logo.png";
@@ -18,7 +17,7 @@ function Form() {
   const [isCouponVerified, setIsCouponVerified] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [eventDate, setEventDate] = useState("");
-  const navigate = useNavigate();
+  const [popupData, setPopupData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,16 +70,38 @@ function Form() {
       );
 
       if (res.data.phoneExists) {
-        return alert("This phone number has already booked a coupon!");
+        return alert(`This mobile number (${formData.phone}) already exists!`);
       }
 
-      alert(`Form submitted! Token: ${res.data.token}`);
-      navigate("/success");
+      const [day] = eventDate.split("-");
+      const dayString = day.padStart(2, "0");
+      const token = formData.coupon[0] + dayString + formData.coupon.slice(1) + formData.phone.slice(-4);
+
+      const smsMessage = `Confirmed! Booking ID ${token}. You are entitled to 1 ticket dated ${eventDate} for Taaza Dandiya @Netaji Indoor Stadium. Rights of admission reserved. T%26C apply. Go to the Ticket counter at venue to redeem. -Taaza Infotainment pvt ltd`;
+
+      setPopupData({
+        token,
+        message: smsMessage,
+        phone: formData.phone,
+      });
+
+      setFormData({
+        name: "",
+        phone: "",
+        aadhaar: "",
+        email: "",
+        coupon: "",
+        userReference: "",
+      });
+      setIsCouponVerified(false);
+      setEventDate("");
     } catch (err) {
       console.error(err);
       alert(err.response?.data?.message || "Something went wrong");
     }
   };
+
+  const closePopup = () => setPopupData(null);
 
   return (
     <div className="form-container">
@@ -90,7 +111,7 @@ function Form() {
           <img src={taaztv} alt="Taaza TV" className="form-logo" />
         </div>
 
-        <h2>COMPLEMENTARY GUEST PASSES</h2> 
+        <h2>COMPLEMENTARY GUEST PASSES</h2>
         <h3>REDEEM AT VENUE TICKET COUNTER</h3>
         <h3>Enter mobile no. & Aadhaar card at venue for verification</h3>
 
@@ -200,6 +221,22 @@ function Form() {
           </ul>
         </div>
       </form>
+
+      {popupData && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h3>Booking Confirmed!</h3>
+            <p>
+              <strong>Phone:</strong> {popupData.phone}
+            </p>
+            <p>
+              <strong>SMS Message You Will Receive:</strong>
+            </p>
+            <p className="sms-message">{popupData.message}</p>
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
