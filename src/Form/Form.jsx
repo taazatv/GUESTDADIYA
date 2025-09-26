@@ -22,7 +22,6 @@ function Form() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "phone" && value.length > 10) return;
     if (name === "aadhaar" && value.length > 12) return;
 
@@ -62,20 +61,15 @@ function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.phone.length !== 10) return alert("Phone must be 10 digits");
-    if (formData.aadhaar.length !== 12)
-      return alert("Aadhaar must be 12 digits");
+    if (formData.aadhaar.length !== 12) return alert("Aadhaar must be 12 digits");
     if (!isCouponVerified) return alert("Verify coupon first");
 
     try {
       const res = await axios.post(
         "https://guestdandiya-backend.onrender.com/api/submit-user",
-        {
-          ...formData,
-          eventDate,
-        }
+        { ...formData, eventDate }
       );
 
-      // Check if phone already booked
       if (res.data.phoneExists) {
         return alert("This phone number has already booked a coupon!");
       }
@@ -96,7 +90,9 @@ function Form() {
           <img src={taaztv} alt="Taaza TV" className="form-logo" />
         </div>
 
-        <h2>GUEST PASSES REGISTRATION</h2>
+        <h2>COMPLEMENTARY GUEST PASSES</h2> 
+        <h3>REDEEM AT VENUE TICKET COUNTER</h3>
+        <h3>Enter mobile no. & Aadhaar card at venue for verification</h3>
 
         <label>Name</label>
         <input
@@ -114,7 +110,7 @@ function Form() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          placeholder="10-digit valid phone no for sending ticket "
+          placeholder="10-digit valid phone no for sending ticket"
           required
         />
 
@@ -189,23 +185,17 @@ function Form() {
           <h4>Terms & Conditions:</h4>
           <ul>
             <li>Only 1 booking allowed per phone number</li>
+            <li>Carry your Aadhaar card at venue for verification</li>
+            <li>Only SMS received on mobile is valid</li>
+            <li>No screenshots or forwards allowed</li>
+            <li>Rights of admission reserved</li>
             <li>
-              Severe action will be taken against misconduct or mischievous
-              behavior
+              Severe action will be taken against misconduct or mischievous behavior
             </li>
-            <li>
-              Smoking and consumption of alcohol is strictly prohibited inside
-              the venue
-            </li>
+            <li>Smoking and consumption of alcohol is strictly prohibited inside the venue</li>
             <li>Outside eatables and water are not allowed</li>
-            <li>
-              Scissors, knives, blades, or any other objectionable instruments
-              are not allowed
-            </li>
-            <li>
-              Every individual must undergo security checks and frisking before
-              entering
-            </li>
+            <li>Scissors, knives, blades, or any other objectionable instruments are not allowed</li>
+            <li>Every individual must undergo security checks and frisking before entering</li>
             <li>Re-entry is not allowed once you exit the venue</li>
           </ul>
         </div>

@@ -1,10 +1,11 @@
 .form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; 
   background: linear-gradient(135deg, #fdf2f8, #f0f4f8);
-  height: 100vh;
-  padding: 0.5rem;
+  min-height: 100vh;      
+  padding: 1rem;
+  overflow-y: auto;       
 }
 
 .form-logos {
@@ -25,8 +26,6 @@
   width: 100%;
   max-width: 380px;
   box-shadow: 0 6px 15px rgba(236, 72, 153, 0.2);
-  max-height: 95vh;
-  overflow-y: auto;
 }
 
 .user-form h2 {
@@ -35,6 +34,14 @@
   color: #ec4899;
   font-size: 1.4rem;
   font-weight: 700;
+}
+
+.user-form h3 {
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .date-buttons {
@@ -164,8 +171,8 @@
   background: #fff0f6;
   color: #444;
   font-size: 0.8rem;
-  max-height: 150px;
-  overflow-y: auto;
+  line-height: 1.4;
+  max-height: none; /* remove fixed height */
 }
 
 .tc-box h4 {
@@ -183,7 +190,6 @@
 
 .tc-box li {
   margin-bottom: 0.4rem;
-  line-height: 1.3;
 }
 
 @media (max-width: 600px) {
@@ -195,15 +201,14 @@
     font-size: 1.2rem;
   }
 
+  .user-form h3 {
+    font-size: 0.85rem;
+  }
+
   .user-form input,
   .user-form button {
     font-size: 0.8rem;
     padding: 0.45rem;
-  }
-
-  .date-buttons button {
-    font-size: 0.75rem;
-    padding: 0.4rem;
   }
 
   .verify-btn {
